@@ -1,11 +1,47 @@
-import React from "react"; 
+import React, { useState } from "react"; 
+import Axios from 'axios'; 
 
-function Login() {
+
+ const Login = ({history}) => {
+    const [creds, setCreds] = useState({
+        username: "",
+        password: ""
+    });
+    const handleChange = event => {
+        setCreds({...creds, [event.target.name]: event.target.value});
+
+    };
     
+    const handleSubmit = event => {
+        event.preventDefault();
+        Axios.post('', creds)
+        .then(res => {
+            console.log(res);
+            localStorage.setItem('token', res.data.payload); 
+            history.push("/friends");
+
+        })
+        .catch(err => console.log(err.response))
+    }
+
     return(
-        <>
-        <h2> Login Component </h2>
-        </>
+        <form onSubmit={handleSubmit}>
+
+            <input type="text" 
+            name="username" 
+            placeholder="username" 
+            onChange={handleChange} 
+            value={creds.username}    
+            />
+            <input 
+            type="password" 
+            name="password" 
+            placeholder="password"
+            onChange={handleChange} 
+            value={creds.password}    
+            />
+            <button type="submit">Log In</button> 
+        </form>
     )
 }
 
