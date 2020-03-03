@@ -21,13 +21,13 @@ import Axios from 'axios';
 
         })
         .catch(err => console.log(err.response))
-    }
+    };
 
     return(
         <>
         <h2> Login Component </h2>
         <form onSubmit={handleSubmit}>
-            <label> Username </label> 
+            <label> Username </label>
             <input type="text" 
             name="username" 
             placeholder="username" 
