@@ -1,6 +1,6 @@
-import React, {useState} from "react"; 
+import React, { useState } from "react"; 
 import axios from "axios"
-// import {BrowserRouter as Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Register(props) {
     
@@ -12,10 +12,9 @@ function Register(props) {
     const handleSubmit = event => {
         event.preventDefault()
         axios
-        .post(" ")
+        .post(" ", register)
         .then(res => {
-            // pass token 
-            // api api data to state
+            localStorage.setItem("token", res.data.token) // pass token 
             props.history.push("/home")
         })
         .catch(error => {
@@ -54,7 +53,8 @@ function Register(props) {
                 required
                 />
                 <div> 
-                <button> Register </button> 
+                <button type="submit"> Register </button> 
+                <Link to="/login"> Already have an account? </Link>
                 </div>
             </form>
         </div>

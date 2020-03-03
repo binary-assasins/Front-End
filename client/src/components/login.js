@@ -1,7 +1,6 @@
 import React, { useState } from "react"; 
 import Axios from 'axios'; 
 
-
  const Login = ({history}) => {
     const [creds, setCreds] = useState({
         username: "",
@@ -18,21 +17,24 @@ import Axios from 'axios';
         .then(res => {
             console.log(res);
             localStorage.setItem('token', res.data.payload); 
-            history.push("/friends");
+            history.push("/home");
 
         })
         .catch(err => console.log(err.response))
     }
 
     return(
+        <>
+        <h2> Login Component </h2>
         <form onSubmit={handleSubmit}>
-
+            <label> Username </label> 
             <input type="text" 
             name="username" 
             placeholder="username" 
             onChange={handleChange} 
             value={creds.username}    
             />
+            <label> Password </label> 
             <input 
             type="password" 
             name="password" 
@@ -41,7 +43,9 @@ import Axios from 'axios';
             value={creds.password}    
             />
             <button type="submit">Log In</button> 
+            {/* <Link to="/register"> Create an Account </Link> */}
         </form>
+        </>
     )
 }
 
