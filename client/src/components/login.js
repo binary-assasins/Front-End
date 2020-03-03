@@ -18,15 +18,14 @@ import Axios from 'axios';
         .then(res => {
             console.log(res);
             localStorage.setItem('token', res.data.payload); 
-            history.push("/friends");
+            history.push("/home");
 
         })
         .catch(err => console.log(err.response))
-    }
+    };
 
     return(
         <form onSubmit={handleSubmit}>
-
             <input type="text" 
             name="username" 
             placeholder="username" 
