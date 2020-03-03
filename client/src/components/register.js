@@ -6,20 +6,26 @@ function Register(props) {
     
     const [register, setRegister] = useState({
         username: "",
-        password: ""
+        password1: "",
+        password2: ""
     })
 
     const handleSubmit = event => {
         event.preventDefault()
-        axios
-        .post(" ", register)
-        .then(res => {
+        const {password1, password2} = register;
+            if(password1 !== password2) {
+                console.log("password does not match")
+            } else { 
+            axios
+            .post("https://binary-assassins.herokuapp.com/api/registration/", register)
+            .then(res => {
             localStorage.setItem("token", res.data.token) // pass token 
             props.history.push("/home")
         })
         .catch(error => {
             console.log("error from register components",error)
         },[])
+        }
     }
 
     const handleChange = event => {
@@ -48,7 +54,16 @@ function Register(props) {
                 type="password"
                 name="password"
                 placeholder="enter password"
-                value={props.password}
+                value={props.password1}
+                onChange={handleChange}
+                required
+                />
+                <label> Confirm Password </label>
+                <input
+                type="password"
+                name="password"
+                placeholder="enter password"
+                value={props.password2}
                 onChange={handleChange}
                 required
                 />
