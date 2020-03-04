@@ -15,7 +15,7 @@ function App() {
         <Route path="/home" component={Home} />
         {/* Create a private router */}
         <Route path="/roommap" component={RoomMap} />
-        {/* <PrivateRouter path="/map" component={Map} /> */}
+        {/* <PrivateRouter authenticated={this.state.authenticated} path="/roommap" component={RoomMap} /> */}
       </Router>
     </div>
   );

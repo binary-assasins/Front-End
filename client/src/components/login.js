@@ -43,7 +43,6 @@ import Axios from 'axios';
             value={creds.password}    
             />
             <button type="submit">Log In</button> 
-            {/* <Link to="/register"> Create an Account </Link> */}
         </form>
         </>
     )

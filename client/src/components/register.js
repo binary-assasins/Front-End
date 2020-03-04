@@ -20,7 +20,7 @@ function Register(props) {
             .post("https://binary-assassins.herokuapp.com/api/registration/", register)
             .then(res => {
             localStorage.setItem("token", res.data.token) // pass token 
-            props.history.push("/home")
+            props.history.push("/roommap")
         })
         .catch(error => {
             console.log("error from register components",error)
