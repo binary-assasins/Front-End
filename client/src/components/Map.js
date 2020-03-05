@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"; 
 import axiosWithAuth from "./auth.js"
 import { Graph } from "react-d3-graph"
+import MapThrough from "./MapThrough.js";
 
 // This compoenent get's the room data from the backend and displays the rooms
 function Map(props) {
@@ -8,23 +9,21 @@ function Map(props) {
 
     useEffect(() => {
         axiosWithAuth()
-       .get("http://lambda-mud-test.herokuapp.com/api/adv/rooms/", room)
+       .get("https://binary-assassins.herokuapp.com/api/adv/rooms", room)
         .then(res => {
-        //    console.log(res.data) // seeing if we are getting data
+           console.log("logging res.data", res.data) // seeing if we are getting data
            setRoom(res.data) // set state to data comeing through api call 
         })
         .catch(error => {
-            console.log("Getting catch from .get() request", console.error)
+            console.log("Getting catch from .get() request", error)
         })
-    },[])
+    }, [])
 
 
 // map through rooms 
-let place = room.rooms
+let place = room.title
 if(place) {
-    place = Object.keys(room.rooms)
-    // console.log(place)
-    // console.log(place.length)
+    place = Object.keys(room.title)
     let newRoom = place.map(room => {
         return {id: room}
        })
@@ -126,6 +125,9 @@ if(place) {
         data={data}
         config={myConfig}
         />
+        {/* {MapThrough.data.map(res => {
+            return 
+        })} */}
         </>
     )
 } else {
@@ -136,4 +138,4 @@ if(place) {
 
 export default Map
 
-// "https://binary-assassins.herokuapp.com/api/adv/rooms/
+// // "https://binary-assassins.herokuapp.com/api/adv/rooms/

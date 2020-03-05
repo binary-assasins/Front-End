@@ -17,7 +17,7 @@ function Register(props) {
                 console.log("password does not match")
             } else { 
             axios
-            .post("https://binary-assassins.herokuapp.com/api/registration/", register)
+            .post("// https://lambda-mud-test.herokuapp.com/api/registration", register)
             .then(res => {
             localStorage.setItem("token", res.data.token) // pass token 
             props.history.push("/roommap")

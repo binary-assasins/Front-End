@@ -13,7 +13,7 @@ import Axios from 'axios';
     
     const handleSubmit = event => {
         event.preventDefault();
-        Axios.post('', creds)
+        Axios.post('https://lambda-mud-test.herokuapp.com/api/login/', creds)
         .then(res => {
             console.log(res);
             localStorage.setItem('token', res.data.payload); 
