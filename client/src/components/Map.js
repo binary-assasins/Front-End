@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"; 
 import axiosWithAuth from "./auth.js"
 import { Graph } from "react-d3-graph"
+import Player from "./Player.js"
 
 // This compoenent get's the room data from the backend and displays the rooms
 function Map() {
@@ -23,7 +24,6 @@ function Map() {
     if(room.data && room.data.length > 0) {
         console.log("I'm here")
         let newRoom = room.data.map(item => {
-            // console.log("This is item within map", item)
             return {id: item.id, x: item.x, y: item.y}
         })
         place = newRoom
@@ -122,6 +122,7 @@ if(!room.data) {
         data={data}
         config={myConfig}
         /> 
+        <Player />
         </>
     )
 }

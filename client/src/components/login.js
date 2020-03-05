@@ -1,5 +1,5 @@
 import React, { useState } from "react"; 
-import Axios from 'axios'; 
+import axios from 'axios'; 
 
  const Login = ({history}) => {
     const [creds, setCreds] = useState({
@@ -13,12 +13,12 @@ import Axios from 'axios';
     
     const handleSubmit = event => {
         event.preventDefault();
-        Axios.post('https://lambda-mud-test.herokuapp.com/api/login/', creds)
+        axios.post('https://binary-assassins.herokuapp.com/api/login/', creds)
         .then(res => {
-            console.log(res);
-            localStorage.setItem('token', res.data.payload); 
-            history.push("/home");
-
+            console.log("res from logins",res);
+            localStorage.setItem('token', res.data.token); 
+            history.push("/roommap");
+    
         })
         .catch(err => console.log(err.response))
     };

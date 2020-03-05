@@ -12,28 +12,20 @@ function Register(props) {
 
     const handleSubmit = event => {
         event.preventDefault()
-        const {password1, password2} = register;
-            if(password1 !== password2) {
-                console.log("password does not match")
-            } else { 
             axios
-            .post("// https://lambda-mud-test.herokuapp.com/api/registration", register)
+            .post("https://binary-assassins.herokuapp.com/api/registration/", register)
             .then(res => {
-            localStorage.setItem("token", res.data.token) // pass token 
-            props.history.push("/roommap")
+            localStorage.setItem("key", res.data.key)
+            props.history.push("/login")
         })
         .catch(error => {
             console.log("error from register components",error)
         },[])
-        }
     }
 
-    const handleChange = event => {
-        setRegister({
-            ...register,
-            [event.target.name]: event.target.value
-        })
-    }
+    const handleChange = user => event => {
+        setRegister({ ...register, [user]: event.target.value });
+    };
 
     return(
         <>
@@ -46,7 +38,7 @@ function Register(props) {
                 name="username"
                 placeholder="enter username"
                 value={props.username}
-                onChange={handleChange}
+                onChange={handleChange("username")}
                 required
                 />
                 <label> Password </label>
@@ -55,7 +47,7 @@ function Register(props) {
                 name="password"
                 placeholder="enter password"
                 value={props.password1}
-                onChange={handleChange}
+                onChange={handleChange("password1")}
                 required
                 />
                 <label> Confirm Password </label>
@@ -64,7 +56,7 @@ function Register(props) {
                 name="password"
                 placeholder="enter password"
                 value={props.password2}
-                onChange={handleChange}
+                onChange={handleChange("password2")}
                 required
                 />
                 <div> 
