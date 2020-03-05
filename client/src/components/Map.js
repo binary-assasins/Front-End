@@ -4,7 +4,7 @@ import { Graph } from "react-d3-graph"
 import MapThrough from "./MapThrough.js";
 
 // This compoenent get's the room data from the backend and displays the rooms
-function Map(props) {
+function Map() {
     const [room, setRoom] = useState([])
 
     useEffect(() => {
@@ -21,37 +21,41 @@ function Map(props) {
 
 
 // map through rooms 
-let place = room.title
-if(place) {
-    place = Object.keys(room.title)
-    let newRoom = place.map(room => {
-        return {id: room}
-       })
-       place = newRoom
-       console.log("I'm here")
-} else {
-    console.log("no good :(")
-}
+// let place = room.title
+// if(place) {
+//     place = Object.keys(room.title)
+//     let newRoom = place.map(room => {
+//         return {id: room}
+//        })
+//        place = newRoom
+//        console.log("I'm here")
+// } else {
+//     console.log("no good :(")
+// }
 
+    // let place = MapThrough()
+    // if(room.length > 0) {
+    //     let newRoom = room.map(item => {
+    //         return room
+    //         // return <MapThrough key={item.id} title={item.title} x={item.x} y={item.y} description={item.description} />
+    //     })
+    //     place = newRoom
+    // }
+      
 
-// create nodes (nodes are the room them self)
-// create links (point to the diffrent rooms)
-const data = {
-    nodes: place,
-    links: [{ source: "1", target: "2" }, { source: "3", target: "4" }, { source: "5", target: "6" }, { source: "7", target: "8" }, { source: "9", target: "10" }, { source: "11", target: "12" }],
-};
-
-// const myConfig = {
-//     nodeHighlightBehavior: true,
-//     node: {
-//         color: "lightgreen",
-//         size: 120,
-//         highlightStrokeColor: "blue",
-//     },
-//     link: {
-//         highlightColor: "lightblue",
-//     },
+// const data = {
+//     nodes: place,
+//     links: [{ source: "1", target: "2" }, { source: "3", target: "4" }, { source: "5", target: "6" }, { source: "7", target: "8" }],
 // };
+
+
+// const data = {
+//     nodes: place,
+//     links: [{ source: "1", target: "2" }, { source: "3", target: "4" }, { source: "5", target: "6" }, { source: "7", target: "8" }],
+// };
+
+let text = JSON.parse(room)
+console.log(text)
 
 
 // Styling
@@ -116,26 +120,32 @@ const myConfig = {
       "markerWidth": 6
     }
 }
-
-if(place) {
+console.log("This is room from Map",room)
+if(room.length === 0) {
     return(
         <>
-        <Graph 
-        id="graph-id"
-        data={data}
-        config={myConfig}
-        />
-        {/* {MapThrough.data.map(res => {
-            return 
-        })} */}
+        <p> Loading... </p> 
         </>
     )
 } else {
-    return <p> Loading... </p> 
+    return(
+        <>
+        <p> Something from Map </p>
+        {/* <Graph 
+        id="graph-id"
+        data={data}
+        config={myConfig}
+        />  */}
+        {room.map(item => {
+            // return room
+            return <MapThrough key={item.id} title={item.title} x={item.x} y={item.y} description={item.description} />
+        })}
+
+        {/* <MapThrough room={place} /> */}
+        </>
+    )
 }
 
 }
 
 export default Map
-
-// // "https://binary-assassins.herokuapp.com/api/adv/rooms/
