@@ -1,0 +1,6 @@
+.TheWorldMap{
+    border: 6px groove rgb(247, 15, 15);
+    background-color: rgb(3, 119, 90);
+    max-width: 60rem;
+    margin: 1rem auto;
+}
