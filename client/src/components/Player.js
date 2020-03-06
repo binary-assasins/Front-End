@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react"
 import axiosWithAuth from "./auth"
-import { set } from "d3"
 
 function Player() {
 
@@ -9,18 +8,18 @@ function Player() {
     // inst api call
 useEffect(() => {
     axiosWithAuth()
-    .get("", player)
+    .get("https://binary-assassins.herokuapp.com/api/adv/init", player)
     .then(res => {
         setPlayer(res.data)
     })
     .catch(error => {
         console.log("getting catch from init api call", error)
-    }, [])
-})
+    })
+}, [])
 console.log(player)
 
-const moveing = (i) => {
-    
+
+const moving = (i) => {
     // useEffect(() => {
        axiosWithAuth()
        .post("https://binary-assassins.herokuapp.com/api/adv/move", {direction: i})
@@ -32,7 +31,7 @@ const moveing = (i) => {
        }) 
     // })
 }
-console.log(player)
+// console.log(player)
 
 // call the init end point to initialize where the player is sponds
 // create a function that will then call the move endpoint within
@@ -41,10 +40,10 @@ console.log(player)
 
     return(
         <>
-        <button onClick={moveing("n")}> N </button>
-        <button onClick={moveing("s")}> S </button>
-        <button onClick={moveing("e")}> E </button>
-        <button onClick={moveing("w")}> W </button>
+        <button onClick={ () => {moving('n')}}> N </button>
+        <button onClick={ () => {moving('s')}}> S </button>
+        <button onClick={ () => {moving('e')}}> E </button>
+        <button onClick={ () => {moving('w')}}> W </button>
         </>
     )
 }
