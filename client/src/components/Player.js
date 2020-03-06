@@ -38,12 +38,20 @@ const moving = (i) => {
 // make sure to return Map componenet with props
 // then in the return we can do a button with an onclick(n, s, e, w)
 
+    //Remember North is south and South is north...
     return(
         <>
-        <button onClick={ () => {moving('n')}}> N </button>
-        <button onClick={ () => {moving('s')}}> S </button>
-        <button onClick={ () => {moving('e')}}> E </button>
-        <button onClick={ () => {moving('w')}}> W </button>
+        <div>
+            <button onClick={ () => {moving('n')}}> S </button> 
+            <button onClick={ () => {moving('s')}}> N </button>
+            <button onClick={ () => {moving('e')}}> E </button>
+            <button onClick={ () => {moving('w')}}> W </button>
+           
+        </div>
+            <div>
+                <p>Room Number: {player.title}</p>
+                <p>Room Description: {player.biome}</p>
+            </div>
         </>
     )
 }
