@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axiosWithAuth from "./auth.js"
 import { Graph } from "react-d3-graph"
 import Player from "./Player.js"
+import '../css/map.css'
 
 // This compoenent get's the room data from the backend and displays the rooms
 function Map() {
@@ -22,7 +23,7 @@ function Map() {
 
     let place = []
     if(room.data && room.data.length > 0) {
-        console.log("I'm here")
+        // console.log("I'm here")
         let newRoom = room.data.map(item => {
             return {id: item.id, x: item.x, y: item.y}
         })
@@ -60,7 +61,7 @@ function Map() {
         "panAndZoom": false,
         "staticGraph": false,
         "staticGraphWithDragAndDrop": false,
-        "width": 800,
+        "width": 900,
         "d3": {
           "alphaTarget": 0.05,
           "gravity": -100,
@@ -70,8 +71,8 @@ function Map() {
         "node": {
           "color": "#d3d3d3",
           "fontColor": "black",
-          "fontSize": 8,
-          "fontWeight": "normal",
+          "fontSize": 12,
+          "fontWeight": "bold",
           "highlightColor": "SAME",
           "highlightFontSize": 8,
           "highlightFontWeight": "normal",
@@ -115,15 +116,16 @@ if(!room.data) {
     )
 } else {
     return(
-        <>
-        <p> Something from Map </p>
-        <Graph 
-        id="graph-id"
-        data={data}
-        config={myConfig}
-        /> 
-        <Player />
-        </>
+        <div>
+            <div className="TheWorldMap">
+                <Graph
+                    id="graph-id"
+                    data={data}
+                    config={myConfig}
+                /> 
+            </div>
+            <Player />
+        </div>
     )
 }
 
