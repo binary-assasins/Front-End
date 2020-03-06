@@ -5,6 +5,8 @@ import Home from './components/home.js';
 import Login from "./components/login.js";
 import Register from "./components/register.js"; 
 import RoomMap from "./components/Map.js";
+import PrivateRoute from "./components/PrivateRouter.js";
+
 
 function App() {
   return (
@@ -14,8 +16,8 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
         {/* Create a private router */}
-        <Route path="/roommap" component={RoomMap} />
-        {/* <PrivateRouter authenticated={this.state.authenticated} path="/roommap" component={RoomMap} /> */}
+        {/* <Route path="/roommap" component={RoomMap} /> */}
+        <PrivateRoute path="/roommap" component={RoomMap} />
       </Router>
     </div>
   );
